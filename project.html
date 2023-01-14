@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Заголовок</title>
+
+    <link
+      rel="stylesheet"
+      href="jqwidgets-ver14.0.0/jqwidgets/styles/jqx.base.css"
+      type="text/css"
+    />
+    <script
+      type="text/javascript"
+      src="jqwidgets-ver14.0.0/jqwidgets/globalization/globalize.js"
+    ></script>
+    <script type="text/javascript" src="jqwidgets-ver14.0.0/scripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="jqwidgets-ver14.0.0/jqwidgets/jqxcore.js"></script>
+
+    <script type="text/javascript" src="jqwidgets-ver14.0.0/jqwidgets/jqxtabs.js"></script>
+    <script type="text/javascript" src="jqwidgets-ver14.0.0/jqwidgets/jqxbuttons.js"></script>
+
+    <script type="text/javascript" src="jqwidgets-ver14.0.0/jqwidgets/jqxinput.js"></script>
+    <script type="text/javascript" src="jqwidgets-ver14.0.0/jqwidgets/jqxcheckbox.js"></script>
+    <script type="text/javascript" src="jqwidgets-ver14.0.0/jqwidgets/jqxdropdownlist.js"></script>
+    <script type="text/javascript" src="jqwidgets-ver14.0.0/jqwidgets/jqxlistbox.js"></script>
+    <script type="text/javascript" src="jqwidgets-ver14.0.0/jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="jqwidgets-ver14.0.0/jqwidgets/jqxtextarea.js"></script>
+    <script type="text/javascript" src="jqwidgets-ver14.0.0/jqwidgets/jqxdatetimeinput.js"></script>
+    <script type="text/javascript" src="jqwidgets-ver14.0.0/jqwidgets/jqxcalendar.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        // create jqxtabs.
+        $('#jqxtabs').jqxTabs({ width: 1262, height: 496 });
+      });
+    </script>
+  </head>
+  <body class="default">
+    <div id="jqxtabs">
+      <ul style="margin-left: 20px">
+        <li>Атрибуты</li>
+      </ul>
+      <table>
+        <tbody>
+          <tr>
+            <td colspan="2">
+              <p style="margin-left: 10px">Название:</p>
+              <input style="margin-left: 10px" type="text" id="nameinput" />
+            </td>
+            <td>
+              <p style="margin-left: 10px">Номер:</p>
+              <input style="margin-left: 10px" type="text" id="namberinput" />
+            </td>
+            <td>
+              <p style="margin-left: 10px">Год:</p>
+              <input style="margin-left: 10px" type="text" id="yearinput" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p style="margin-left: 10px">Дата с:</p>
+              <input style="margin-left: 10px" type="text" id="docinput" />
+            </td>
+            <td>
+              <p style="margin-left: 10px">Дата по:</p>
+              <input style="margin-left: 10px" type="text" id="dateinput" />
+            </td>
+            <td>
+              <p style="margin-left: 10px">Состояние:</p>
+              <input style="margin-left: 10px" type="text" id="stateinput" />
+            </td>
+            <td>
+              <div style="margin-top: 40px; margin-left: 10px" id="jqxCheckBox">Объект закрыт</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p style="margin-left: 10px">Формат:</p>
+              <div style="margin-left: 10px" , id="FormatKeeping"></div>
+            </td>
+            <td>
+              <p style="margin-left: 10px">Тип:</p>
+              <div
+                style="margin-left: 10px; background-color: white; outline: 1px solid #666"
+                ,
+                id="TypeKeeping"
+              ></div>
+            </td>
+            <td>
+              <p style="margin-left: 10px">Группа:</p>
+              <input style="margin-left: 10px" type="text" id="groupinput" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p style="margin-left: 10px">Количество документов план:</p>
+              <input style="margin-left: 10px" type="text" id="DocPlaninput" />
+            </td>
+            <td>
+              <p style="margin-left: 10px">Количество документов факт:</p>
+              <input style="margin-left: 10px" type="text" id="DocFactinput" />
+            </td>
+            <td>
+              <p style="margin-left: 10px">Количество листов план:</p>
+              <input style="margin-left: 10px" type="text" id="ListPlaninput" />
+            </td>
+            <td>
+              <p style="margin-left: 10px">Количество листов факт:</p>
+              <input style="margin-left: 10px" type="text" id="ListFactinput" />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <p style="margin-left: 10px">Комментарий:</p>
+              <textarea style="margin-left: 10px" type="text" id="commentsinput"> </textarea>
+            </td>
+          </tr>
+          <tr class="bttn">
+            <td></td>
+            <td></td>
+            <td>
+              <input
+                style="margin-top: 20px; margin-left: 80px"
+                type="Button"
+                value="Обновить"
+                id="Reload"
+              />
+            </td>
+            <td>
+              <input
+                style="margin-top: 20px"
+                type="Button"
+                value="Отменить изменения"
+                id="Cancel"
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="content"></div>
+    </div>
+    <script type="text/javascript">
+      var formatB = [
+        { text: 'Книжный шкаф 400', value: '1', quantity: '400' },
+        { text: 'Книжный шкаф 350', value: '2', quantity: '350' },
+        { text: 'Книжная полка 75', value: '4', quantity: '75' },
+        { text: 'Книжная полка 50', value: '5', quantity: '50' },
+        { text: 'Книжная полка 150', value: '6', quantity: '150' },
+      ];
+      var formatE = [
+        { text: 'Книжный шкаф 400', value: '1', quantity: '400' },
+        { text: 'Книжный шкаф 350', value: '2', quantity: '350' },
+        { text: 'ЭЛЕКТРОННАЯ ПОЛКА', value: '3', quantity: '25' },
+        { text: 'Книжная полка 75', value: '4', quantity: '75' },
+        { text: 'Книжная полка 50', value: '5', quantity: '50' },
+        { text: 'Книжная полка 150', value: '6', quantity: '150' },
+      ];
+      var type = [
+        { text: 'Библиотечный', value: '1' },
+        { text: 'Электронный', value: '2' },
+        { text: '', value: '3' },
+      ];
+
+      function refresh(obj) {
+        var newobj = new Object();
+
+        newobj.nodeId = obj.nodeId;
+        // "nodeId":newobj.nodeId,
+        newobj.volumeName = $('#nameinput').val();
+        newobj.year = $('#yearinput').val();
+        newobj.dateFrom = $('#dateinput').val();
+        newobj.dateTo = $('#docinput').val();
+        newobj.volumeClosed = $('#jqxCheckBox').val() == true ? 1 : 0;
+        newobj.storageType = $('#TypeKeeping').val();
+        newobj.locatorType = $('#FormatKeeping').val();
+        newobj.sheetsFact = $('#ListFactinput').val();
+        newobj.sheetsPlan = $('#ListPlaninput').val();
+        newobj.docsPlan = $('#DocPlaninput').val();
+        newobj.docsFact = $('#DocFactinput').val();
+        // "volumeNum":$('#namberinput').val(),
+        // "year":$('#yearinput').val(),
+        // "dateFrom":$('#dateinput').val(),
+        // "dateTo":$('#docinput').val(),
+        // "volumeClosed":$('#jqxCheckBox').val(),
+        // "storageType": $('#TypeKeeping').val(),
+        // "locatorType": $('#FormatKeeping').val(),
+        // "sheetsPlan":$('#ListPlaninput').val(),
+        // "sheetsFact":$('#ListFactinput').val(),
+        // "docsPlan":$('#DocPlaninput').val(),
+        // "docsFact":$('#DocFactinput').val(),
+        newobj.comment = $('#commentsinput').val();
+
+        return newobj;
+      }
+      function myfun(arg) {
+        var date = arg.dateFrom;
+        var arr = date.split('.');
+        var result = arr[0] + '.' + arr[1] + '.' + arr[2];
+
+        //var objdate= new Date(date);
+
+        $('#nameinput').val(arg.volumeName);
+        $('#namberinput').val(arg.volumeNum);
+        $('#yearinput').val(arg.year);
+        $('#dateinput').val(arg.dateTo);
+        //$("#docinput").val(new Date (arg.dateFrom));
+        $('#docinput').val(result);
+        $('#jqxCheckBox').val(arg.volumeClosed);
+
+        for (var i in type)
+          if (arg.storageType == type[i].text)
+            $('#TypeKeeping').jqxDropDownList('selectItem', type[i].value);
+        //$("#TypeKeeping").val(arg.storageType);
+
+        for (var i in formatB)
+          if (arg.locatorType == formatB[i].text)
+            $('#FormatKeeping').jqxDropDownList('selectItem', formatB[i].value);
+
+        //$("#FormatKeeping").val(arg.locatorType);
+        $('#ListPlaninput').val(arg.sheetsPlan);
+        $('#ListFactinput').val(arg.sheetsFact);
+        $('#DocPlaninput').val(arg.docsPlan);
+        $('#DocFactinput').val(arg.docsFact);
+        $('#commentsinput').val(arg.comment);
+
+        $('#docinput').jqxDateTimeInput({ formatString: 'dd.MM.yyyy' });
+      }
+
+      $(document).ready(function () {
+        $('#nameinput').jqxInput({ disabled: true, height: 25, width: 600 });
+        $('#namberinput').jqxInput({ disabled: true, height: 25, width: 300 });
+
+        $('#yearinput').jqxInput({ disabled: true, height: 25, width: 300 });
+        $('#stateinput').jqxInput({ disabled: true, height: 25, width: 300 });
+        $('#DocPlaninput').jqxInput({ disabled: true, height: 25, width: 300 });
+        $('#DocFactinput').jqxInput({ disabled: true, height: 25, width: 300 });
+        $('#ListPlaninput').jqxInput({ disabled: true, height: 25, width: 300 });
+        $('#ListFactinput').jqxInput({ disabled: true, height: 25, width: 300 });
+        $('#groupinput').jqxInput({ disabled: true, height: 25, width: 300 });
+
+        $('#commentsinput').jqxTextArea({ width: 930, height: 75 });
+
+        $('#docinput').jqxDateTimeInput({
+          disabled: true,
+          height: 25,
+          width: 300,
+          formatString: 'dd.MM.yyyy',
+        });
+        $('#dateinput').jqxDateTimeInput({
+          disabled: true,
+          height: 25,
+          width: 300,
+          value: new Date(),
+          formatString: 'dd.MM.yyyy',
+        });
+
+        $('#nameinput').jqxInput('disabled');
+        $('#namberinput').jqxInput('disabled');
+
+        $('#yearinput').jqxInput('disabled');
+        $('#stateinput').jqxInput('disabled');
+        $('#DocPlaninput').jqxInput('disabled');
+        $('#DocFactinput').jqxInput('disabled');
+        $('#ListPlaninput').jqxInput('disabled');
+        $('#ListFactinput').jqxInput('disabled');
+        $('#groupinput').jqxInput('disabled');
+
+        $('#docinput').jqxDateTimeInput('disabled');
+        $('#dateinput').jqxDateTimeInput('disabled');
+
+        $('#Reload').jqxButton({ width: '200', height: '30' });
+        $('#Cancel').jqxButton({ width: '200', height: '30' });
+
+        $('#jqxCheckBox').jqxCheckBox({ width: 150, height: 25 });
+
+        //var updating = false;
+        $('#TypeKeeping').jqxDropDownList({
+          source: type,
+          displayMember: 'text',
+          width: '200px',
+          height: '25px',
+          disabled: true,
+        });
+        $('#FormatKeeping').jqxDropDownList({
+          source: formatB,
+          displayMember: 'text',
+          width: '200px',
+          height: '25px',
+          disabled: true,
+        });
+
+        $('#FormatKeeping').on('change', function (event) {
+          if ($('#TypeKeeping').val() == '1') {
+            $('#ListPlaninput').val(event.args.item.originalItem.quantity);
+            $('#DocPlaninput').val('');
+          } else if ($('#TypeKeeping').val() == '2') {
+            $('#DocPlaninput').val(event.args.item.originalItem.quantity);
+          }
+        });
+
+        $('#TypeKeeping').on('select', function (event) {
+          if ($('#TypeKeeping').val() == '2') {
+            //var args = event.args;
+            //var item = $("#TypeKeeping").jqxDropDownList('getSelectedItem');
+            //if(item == '2')
+            $('#FormatKeeping').jqxDropDownList({ source: formatE });
+            $('#FormatKeeping').jqxDropDownList({ disabled: true });
+            //$("#FormatKeeping").jqxDropDownList('enableItem', "3" );
+            //$("#FormatKeeping").val('3');
+            $('#FormatKeeping').jqxDropDownList('selectItem', '3');
+            $('#ListPlaninput').val('');
+            $('#ListFactinput').val('');
+
+            //updating = true;
+            //return;
+          } else if ($('#TypeKeeping').val() == '1') {
+            //$("#FormatKeeping").jqxDropDownList('disableAt', 2);
+            //if(item == 'Библиотечный>')
+            $('#FormatKeeping').jqxDropDownList({ source: formatB });
+            // $("#FormatKeeping").jqxDropDownList('disableItem', "3" );
+            $('#FormatKeeping').jqxDropDownList({ disabled: false });
+            $('#FormatKeeping').val('1');
+
+            //updating = false;
+            //return ;
+          }
+        });
+
+        $('#jqxCheckBox').bind('change', function (event) {
+          var checked = event.args.checked;
+          if (checked == true) {
+            $('#dateinput').jqxDateTimeInput({ value: new Date() });
+            $('#stateinput').val('Закрыт');
+            $('#TypeKeeping').jqxDropDownList({ disabled: true });
+            $('#FormatKeeping').jqxDropDownList({ disabled: true });
+          } else if (checked == false) {
+            //$("#dateinput").jqxDateTimeInput({ value:null});
+            $('#dateinput').val(null);
+            $('#stateinput').val('Создан');
+            $('#TypeKeeping').jqxDropDownList({ disabled: false });
+            $('#FormatKeeping').jqxDropDownList({ disabled: false });
+          }
+        });
+        var perObj = {
+          nodeId: 4000021,
+          volumeName: 'Папка 11',
+          volumeNum: '11',
+          year: '2021',
+          dateFrom: '01.07.2021', //"01.07.2021",
+          dateTo: null,
+          volumeClosed: 0,
+          storageType: 'Библиотечный',
+          locatorType: 'Книжная полка 75',
+          sheetsPlan: '75',
+          sheetsFact: null,
+          docsPlan: null,
+          docsFact: null,
+          comment: null,
+        };
+        var gggg = {
+          nodeId: 2222222222222222,
+          volumeName: '222adasd',
+          volumeNum: '11',
+          year: '2021',
+          dateFrom: '01.07.2021', //"01.07.2021",
+          dateTo: null,
+          volumeClosed: 0,
+          storageType: '----------',
+          locatorType: '-----',
+          sheetsPlan: '75',
+          sheetsFact: null,
+          docsPlan: null,
+          docsFact: null,
+          comment: null,
+        };
+        $('#Cancel').on('click', function () {
+          myfun(obj);
+        });
+
+        $('#Reload').on('click', function () {
+          console.log(refresh(obj));
+        });
+        console.log(formatB[1].quantity);
+        myfun(gggg);
+
+        let type2 = [
+          { text: 'Библиотечный', value: '1' },
+          { text: 'Электронный', value: '2' },
+          { text: '', value: '3' },
+        ];
+
+        let type3 = [1, 2, 3, 'sanya'];
+
+        console.log(type2[0].text);
+      });
+    </script>
+  </body>
+</html>
